@@ -18,9 +18,9 @@
    -2  | -1
 
 
-  Goal: move to specified location 2 from specified location 1
+  _goal: move to specified location 2 from specified location 1
   
-  Iterative goal: Get closer to location 2
+  Iterative _goal: Get closer to location 2
    
   Constraints: (x >= 0 && x <= 7) && (y >= 0 && y <= 7)
 
@@ -47,7 +47,7 @@ const KnightTravail = (start, goal) => {
     let queue = [_start];
     let parents = {};
 
-    if (_start[0] === goal[0] && _start[1] === goal[1]) {
+    if (_start[0] === _goal[0] && _start[1] === _goal[1]) {
       return _start;
     }
 
@@ -64,7 +64,7 @@ const KnightTravail = (start, goal) => {
         if (res[0] >= 0 && res[0] <= 7 && res[1] >= 0 && res[1] <= 7 && !seen) {
           queue.push(res);
           parents[`${res[0]},${res[1]}`] = `${curr[0]},${curr[1]}`;
-          if (res[0] === goal[0] && res[1] === goal[1]) {
+          if (res[0] === _goal[0] && res[1] === _goal[1]) {
             found = true;
           }
         }
@@ -72,7 +72,7 @@ const KnightTravail = (start, goal) => {
     }
 
     let path = [];
-    let curr = goal;
+    let curr = _goal;
 
     while (curr[0] !== _start[0] || curr[1] !== _start[1]) {
       path.push(curr);
@@ -89,7 +89,7 @@ const KnightTravail = (start, goal) => {
     let ret = "";
 
     path.forEach((spot) => {
-      if (spot[0] === goal[0] && spot[1] === goal[1]) {
+      if (spot[0] === _goal[0] && spot[1] === _goal[1]) {
         ret += spot;
       } else {
         ret += spot + " --> ";
